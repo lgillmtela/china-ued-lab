@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ued体育 · 信息整理与资料索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f8f5f0;
+            font-family: 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            color: #3d3d3a;
+            line-height: 1.75;
+            padding: 0 1.5rem 3rem;
+        }
+        .page-wrap {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0.5rem 0.8rem;
+            border-bottom: 1px solid #d9d2c6;
+            flex-wrap: wrap;
+        }
+        .nav-brand {
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #3d3d3a;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #6b6258;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #2b2b28;
+        }
+        @media (max-width: 540px) {
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.6rem;
+            }
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+        }
+
+        /* hero 区 */
+        .hero {
+            padding: 4rem 0 2.8rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 350;
+            letter-spacing: 3px;
+            color: #2f2f2a;
+            margin-bottom: 1rem;
+        }
+        .hero .subhead {
+            font-size: 1.05rem;
+            color: #7a7267;
+            max-width: 520px;
+            margin: 0 auto 1.6rem;
+            line-height: 1.7;
+        }
+
+        /* 核心介绍 */
+        .intro-card {
+            background: #ffffffec;
+            padding: 2rem 2.4rem;
+            margin: 1.2rem 0 2.5rem;
+            border-left: 4px solid #b5ab9c;
+            box-shadow: 0 2px 8px rgba(60, 50, 36, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+        .intro-card p {
+            margin-bottom: 1rem;
+        }
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+        .intro-card a {
+            color: #4d6b5a;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+        .intro-card a:hover {
+            color: #2e4f3b;
+        }
+
+        /* 三个场景模块 (信息整理向) */
+        .scenes-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2.4rem 0 2.8rem;
+            justify-content: center;
+        }
+        .scene-item {
+            flex: 1 1 220px;
+            background: #fefdfb;
+            padding: 1.8rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            border: 1px solid #e3ddd3;
+            transition: transform 0.2s;
+        }
+        .scene-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(80, 70, 55, 0.08);
+            border-color: #cbc1b3;
+        }
+        .scene-item h3 {
+            font-size: 1.2rem;
+            font-weight: 450;
+            margin-bottom: 0.75rem;
+            color: #3d3d3a;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #d9d0c2;
+        }
+        .scene-item p {
+            font-size: 0.95rem;
+            color: #5b554b;
+        }
+        .scene-item .tag {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            background: #ede9e1;
+            padding: 0.15rem 0.8rem;
+            border-radius: 20px;
+            color: #4f4840;
+        }
+
+        /* 引用块 / 提示框 */
+        .tip-box {
+            background: #f0ece4;
+            border-left: 6px solid #8c8172;
+            padding: 1.4rem 2rem;
+            margin: 2rem 0 2.2rem;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.98rem;
+            color: #3f3b36;
+        }
+        .tip-box strong {
+            color: #2f2d29;
+        }
+        .tip-box a {
+            color: #4d6b5a;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* FAQ 摘要 */
+        .faq-section {
+            margin: 2.8rem 0 1rem;
+        }
+        .faq-section h2 {
+            font-size: 1.5rem;
+            font-weight: 380;
+            color: #2f2f2a;
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+        }
+        .faq-item {
+            border-bottom: 1px dashed #d6cfc3;
+            padding: 1rem 0;
+        }
+        .faq-question {
+            font-weight: 550;
+            color: #3d3d3a;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .faq-question::before {
+            content: "▹";
+            color: #8c8172;
+            font-size: 1rem;
+        }
+        .faq-answer {
+            color: #5c564c;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* 页脚 */
+        .footnote {
+            margin-top: 3.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #d9d2c6;
+            font-size: 0.85rem;
+            color: #7f786e;
+            text-align: center;
+        }
+        .footnote a {
+            color: #6b6258;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .intro-card {
+                padding: 1.4rem 1.2rem;
+            }
+            .scene-item {
+                flex: 1 1 100%;
+            }
+            .tip-box {
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <span class="nav-brand">ued·索引</span>
+        <div class="nav-links">
+            <a href="https://china-ued.com">ued体育</a>
+            <a href="#">资料分类</a>
+            <a href="#">归档笔记</a>
+            <a href="#">关于</a>
+        </div>
+    </nav>
+
+    <!-- hero 区域 -->
+    <div class="hero">
+        <h1>整理 · 连接 · 索引</h1>
+        <div class="subhead">
+            从零散的信息里找到线索，为日常使用和素材参考提供一种更安静的入口。
+        </div>
+    </div>
+
+    <!-- 核心介绍 (嵌入链接) -->
+    <div class="intro-card">
+        <p>
+            这个页面是一份轻量的资料整理笔记，主要围绕 <a href="https://china-ued.com">ued体育</a> 
+            所涉及的信息结构、内容归类以及常见使用场景做了简单的梳理。不追求大而全，
+            更希望像一个随手翻开的活页夹——把相关的条目、模块和提示放在一起，需要的时候能快速定位。
+        </p>
+        <p>
+            如果你也在收集某一类信息，或者经常需要回顾某些资料的结构， 
+            这里或许能提供一点参考。当然，最直接的还是进入 <a href="https://china-ued.com">ued体育</a> 本身，
+            那里有更完整的资源与更新。
+        </p>
+    </div>
+
+    <!-- 三个场景模块 (从资料整理的角度) -->
+    <div class="scenes-grid">
+        <div class="scene-item">
+            <h3>日常检索</h3>
+            <p>把常用的内容模块按类别整理，减少重复翻阅的时间。适合需要频繁查阅某些资料或记录的日常场景。</p>
+            <span class="tag">索引</span>
+        </div>
+        <div class="scene-item">
+            <h3>素材归档</h3>
+            <p>将零散的截图、链接和笔记归入对应类别，方便日后做对比或二次整理。保持个人资料库的条理。</p>
+            <span class="tag">归类</span>
+        </div>
+        <div class="scene-item">
+            <h3>结构参考</h3>
+            <p>观察信息展示的层次和分组方式，用于搭建自己的导航或说明页。适合学习布局和内容分段。</p>
+            <span class="tag">框架</span>
+        </div>
+    </div>
+
+    <!-- 提示框 / 引用块 -->
+    <div class="tip-box">
+        <strong>📋 一点说明：</strong> 
+        这里整理的内容基于个人使用习惯和公开资料，不构成任何专业建议。如果你发现某些信息需要更新，
+        或者有更好的分类方式，欢迎记录下来。信息的价值往往在于持续维护和微调。
+        <br><br>
+        更全面的动态和内容，仍以 <a href="https://china-ued.com">ued体育</a> 的实时页面为准。
+    </div>
+
+    <!-- FAQ 摘要 (常见说明) -->
+    <div class="faq-section">
+        <h2>常见说明 · 摘要</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">这个索引页面会频繁更新吗？</div>
+            <div class="faq-answer">不一定。它更像一个静态的笔记页，随个人整理节奏更新。平时使用以主站内容为准。</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">链接里的 ued体育 和我收藏的是同一个吗？</div>
+            <div class="faq-answer">是的，链接指向的就是 <a href="https://china-ued.com">ued体育</a> 首页，与日常访问的入口一致。</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">三个场景模块是怎么选出来的？</div>
+            <div class="faq-answer">基于个人在查找、归档和参考时最常用到的三个动作，不一定覆盖所有情况，但比较有代表性。</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">内容可以转载或分享吗？</div>
+            <div class="faq-answer">本页只是简单的个人整理笔记，不涉及版权限制。但引用时建议注明来源，并核对主站信息的准确性。</div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footnote">
+        <p>一份笔记 · 基于个人视角整理 · 内容仅供参考 · 主站：<a href="https://china-ued.com">ued体育</a></p>
+    </div>
+
+</div>
+</body>
+</html>
