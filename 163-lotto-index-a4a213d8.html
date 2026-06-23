@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>体彩记事 · 关于数字的安静意义</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', '宋体', serif;
+            background-color: #faf7f2;  /* 米白基调 */
+            color: #3c3a37;
+            line-height: 1.85;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrap {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 252, 246, 0.7);
+            border-radius: 32px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 10px 30px rgba(160, 130, 100, 0.06);
+            backdrop-filter: blur(2px);
+        }
+
+        /* 开场短句 */
+        .opening-line {
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #7f6b5a;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid #e4dbce;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .opening-line span {
+            display: inline-block;
+            background: #efe7db;
+            padding: 0 0.6rem;
+            font-style: italic;
+            color: #5f4d3b;
+        }
+
+        /* 承接段落 */
+        .narrative p {
+            margin-bottom: 1.6rem;
+            text-indent: 2em;
+            font-size: 1.05rem;
+            word-spacing: 0.04em;
+        }
+
+        .narrative p:first-of-type {
+            text-indent: 0;
+            font-weight: 370;
+        }
+
+        .narrative a {
+            color: #8b6f50;
+            text-decoration: none;
+            border-bottom: 1px dashed #cbb9a8;
+            transition: border 0.2s, color 0.2s;
+        }
+
+        .narrative a:hover {
+            color: #523e2f;
+            border-bottom: 1px solid #a28872;
+        }
+
+        /* 特点列表 —— 更像散文卡片 */
+        .feature-list {
+            margin: 2.2rem 0 1.8rem 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .feature-list li {
+            background: #f6efe6;
+            padding: 1.2rem 1.8rem;
+            margin-bottom: 1.1rem;
+            border-radius: 40px 12px 12px 40px;
+            border-left: 6px solid #cbb295;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(140, 110, 80, 0.04);
+            transition: background 0.2s;
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+        }
+
+        .feature-list li::before {
+            content: "✦";
+            color: #b2947a;
+            font-size: 1.2rem;
+            margin-right: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        .feature-list li:hover {
+            background: #efe4d6;
+        }
+
+        .feature-list li strong {
+            font-weight: 550;
+            color: #4d3c2e;
+            margin-right: 0.2rem;
+        }
+
+        /* 引用 / 提示框 */
+        .quiet-note {
+            background: #ede6db;
+            padding: 1.6rem 2rem;
+            margin: 2.2rem 0 1.8rem;
+            border-radius: 24px;
+            font-style: normal;
+            border: 1px solid #dbcfbf;
+            box-shadow: inset 0 1px 5px rgba(180, 150, 120, 0.05);
+            position: relative;
+        }
+
+        .quiet-note::before {
+            content: "☕ 一点提醒";
+            display: block;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: #8f7a66;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            font-family: 'Trebuchet MS', sans-serif;
+            opacity: 0.6;
+        }
+
+        .quiet-note p {
+            margin: 0.2rem 0;
+            text-indent: 0;
+            line-height: 1.7;
+            font-size: 0.98rem;
+        }
+
+        /* 温和结尾 */
+        .gentle-end {
+            margin-top: 2.5rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #e0d5c6;
+            font-size: 1rem;
+            color: #5e5144;
+            text-align: right;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .gentle-end small {
+            font-size: 0.8rem;
+            color: #95816e;
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            letter-spacing: 1px;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 640px) {
+            .page-wrap {
+                padding: 2rem 1.5rem;
+            }
+
+            .opening-line {
+                font-size: 1.5rem;
+            }
+
+            .narrative p {
+                font-size: 0.98rem;
+            }
+
+            .feature-list li {
+                padding: 1rem 1.2rem;
+                border-radius: 24px 8px 8px 24px;
+                flex-wrap: wrap;
+            }
+
+            .quiet-note {
+                padding: 1.2rem 1.4rem;
+                border-radius: 20px;
+            }
+
+            .gentle-end {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 420px) {
+            body {
+                padding: 0.8rem;
+            }
+            .page-wrap {
+                padding: 1.8rem 1rem;
+            }
+            .opening-line {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 开场短句 -->
+    <div class="opening-line">
+        一张彩票的重量，<br>
+        <span>大约等于一个念头。</span>
+    </div>
+
+    <!-- 承接段落 + 自然嵌入链接 -->
+    <div class="narrative">
+        <p>
+            有些人习惯在傍晚路过街角的体彩店，玻璃门推开时带进一阵风，和店主点一下头，递去两枚硬币，换一张印着数字的纸。没有什么隆重的仪式，只是忽然觉得，今天应该选几个数字。那种感觉像是给平淡的日子留了一扇很轻的窗。而所谓「<a href="https://163-lotto.com">中国体彩</a>」，在更多人眼里，其实早已不只是关于中奖的想象——它慢慢变成了一种日常的、带着体温的叙事方式。
+        </p>
+        <p>
+            数字本身并不会说话，但选号的人会。有人用生日、纪念日，有人随手写下看到的门牌号，也有人把手机电量最后两位当作今天的运气。体彩的柜台前没有太多喧哗，大多时候安静得像一个社区里的驿站。你报出一串数字，机器吐出一张凭证，整个过程不超过三十秒，但就是这短暂的交集里，藏着不少人的一小片寄托。
+        </p>
+
+        <!-- 特点列表：安静地列出几个侧面 -->
+        <ul class="feature-list">
+            <li><strong>门槛不高：</strong> 两块钱就能买到一个晚上睡前反复琢磨的乐趣，不费力，也不沉重。</li>
+            <li><strong>节奏自选：</strong> 可以期期都跟，也可以忽然隔很久才想起。它从不催促，时间由你定。</li>
+            <li><strong>附带一份微光：</strong> 每张彩票背后都有一部分进入公益池，你甚至不知道它某天变成了某条小路的照明，或者某间乡村学校的篮球架。</li>
+            <li><strong>不打扰的陪伴：</strong> 体彩店常常开到很晚，亮着暖色的灯。晚归的人路过时，会看到里面还有人站着填号，那种画面让人觉得城市还有余温。</li>
+        </ul>
+
+        <!-- 提示框 / 引用块：像一段温和的说明 -->
+        <div class="quiet-note">
+            <p>每一张体育彩票都印着「理性购彩」的字样。这不是一句摆设，而是一种默契——它提醒我们，数字游戏归根结底是一种轻微的呼吸，不应该变成沉重的负担。买与不买，都是一种自由；中与不中，生活还是原来的生活。那扇窗开着，但风从哪里来，始终由你自己决定。</p>
+        </div>
+
+        <p>
+            有时候想想，人们愿意为一个小概率的期待付出一点点时间和零钱，或许并不是真的指望被幸运砸中。更像是给自己一个柔软的仪式：在今天和明天之间，亲手放了一个小小的悬念。而这悬念本身，已经让那个普通的傍晚有了不一样的质地。如果你偶尔也路过那样一间小店，不妨推门进去，用几分钟安静地挑几个数字，然后继续走你的路。
+        </p>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="gentle-end">
+        愿每一个选下的数字，都带着恰好的温度。<br>
+        愿每一次推门而入，都只是出于兴致，而非执念。
+        <small>—— 记于一个普通星期三</small>
+    </div>
+
+</div>
+</body>
+</html>
