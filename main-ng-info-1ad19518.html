@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NG导航 · 站点介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f1f7fa;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1e2a33;
+      line-height: 1.6;
+      padding: 2rem 1.2rem;
+    }
+
+    .page {
+      max-width: 1024px;
+      margin: 0 auto;
+    }
+
+    /* hero 区块 — 克制叙述 */
+    .hero {
+      background: #ffffff;
+      padding: 2.5rem 2rem;
+      border-radius: 32px;
+      box-shadow: 0 8px 24px rgba(28, 73, 89, 0.06);
+      margin-bottom: 2.2rem;
+      border: 1px solid #d9e7ed;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #164a5e;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .hero h1 small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #457b8c;
+      background: #e1f0f3;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      line-height: 1.8;
+      margin-left: 0.2rem;
+    }
+
+    .hero p {
+      max-width: 660px;
+      margin-top: 1.2rem;
+      font-size: 1.1rem;
+      color: #2a4a58;
+    }
+
+    .hero p a {
+      color: #1b7c8f;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid #b1d6e0;
+      transition: border-color 0.2s;
+    }
+
+    .hero p a:hover {
+      border-bottom-color: #1b7c8f;
+    }
+
+    /* 网格卡片区 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #dce9ef;
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 28px rgba(26, 82, 99, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: #124d5c;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .card h3 span {
+      display: inline-block;
+      background: #d2e9ef;
+      color: #0b4b5b;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.1rem 0.7rem;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #2f4f5c;
+      margin-bottom: 0.8rem;
+    }
+
+    .card .tag {
+      display: inline-block;
+      background: #e8f3f7;
+      color: #1b6d7a;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      margin-right: 0.3rem;
+      margin-top: 0.2rem;
+    }
+
+    /* 陈述块 — 叙述感 */
+    .note {
+      background: #ffffff;
+      padding: 2rem 2rem;
+      border-radius: 28px;
+      border-left: 6px solid #3498a8;
+      box-shadow: 0 4px 16px rgba(36, 93, 107, 0.04);
+      margin-bottom: 2.2rem;
+    }
+
+    .note h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #124d5c;
+      margin-bottom: 0.8rem;
+    }
+
+    .note p {
+      margin-bottom: 0.7rem;
+      color: #2b4a57;
+    }
+
+    .note a {
+      color: #1b7c8f;
+      text-decoration: none;
+      border-bottom: 2px solid #b7d7e2;
+    }
+
+    .note a:hover {
+      border-bottom-color: #1b7c8f;
+    }
+
+    /* FAQ 紧凑摘要 */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #dce9ef;
+    }
+
+    .faq-mini h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #124d5c;
+      margin-bottom: 1rem;
+    }
+
+    .faq-item {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #e4eef2;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      color: #1e5b69;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: #355b67;
+      line-height: 1.5;
+    }
+
+    /* 底部 */
+    .footer-note {
+      text-align: center;
+      padding: 1rem 0 0.2rem;
+      font-size: 0.85rem;
+      color: #5b7e8a;
+      border-top: 1px solid #d4e2e8;
+      margin-top: 0.8rem;
+    }
+
+    .footer-note a {
+      color: #196d7c;
+      text-decoration: none;
+      border-bottom: 1px dotted #b7d0d9;
+    }
+
+    /* 响应式 */
+    @media (max-width: 560px) {
+      body { padding: 1.2rem 0.8rem; }
+      .hero { padding: 1.8rem 1.2rem; }
+      .hero h1 { font-size: 1.7rem; }
+      .grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .card { padding: 1.4rem; }
+      .note { padding: 1.5rem 1.2rem; }
+      .faq-mini { padding: 1.2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- hero 介绍 -->
+  <div class="hero">
+    <h1>
+      NG导航
+      <small>站点介绍</small>
+    </h1>
+    <p>
+      <a href="https://main-ng.com">NG导航</a> 是一个以实用和简洁为出发点的网络资源索引。它并不试图囊括一切，而是侧重收录那些经过时间检验、内容扎实的站点。如果你常在互联网上寻找可靠的信息源、工具或社区，或许会发现这里提供的目录恰好能节省一些翻找的工夫。
+    </p>
+  </div>
+
+  <!-- 网格卡片：亮点 + 使用场景 + 特点 -->
+  <div class="grid">
+    <div class="card">
+      <h3>📌 分类克制 <span>亮点</span></h3>
+      <p>没有泛滥的标签和无限嵌套的目录——每个类别都经过取舍，保留真正活跃或内容持续更新的站点。导航本身不存储内容，只做指向。</p>
+      <span class="tag">精选索引</span>
+      <span class="tag">轻量结构</span>
+    </div>
+    <div class="card">
+      <h3>🧭 使用建议</h3>
+      <p>可以把它当作一个起点：遇到陌生的领域想找资料，或者日常需要快速访问几个固定工具型站点时，先在分类里扫一眼，往往比直接搜索更直接。</p>
+      <span class="tag">效率场景</span>
+      <span class="tag">研究参考</span>
+    </div>
+    <div class="card">
+      <h3>⚖️ 可信说明</h3>
+      <p>收录的站点大多有公开记录、持续维护或明确作者信息。不推荐来历不明、无联系方式的资源。链接如有变化，以实际站点为准，本页仅提供参考。</p>
+      <span class="tag">审慎收录</span>
+      <span class="tag">无保证声明</span>
+    </div>
+  </div>
+
+  <!-- 叙述式说明块：可信与克制 -->
+  <div class="note">
+    <h2>关于这个导航的立场</h2>
+    <p>维护 <a href="https://main-ng.com">NG导航</a> 的想法其实很朴素：网上好的东西很多，但找到它们的过程时常让人疲惫。这个站点希望做一个安静的「候车站」——不渲染、不夸大，只是把那些值得一看的地方按类别放在一起。</p>
+    <p>每个链接背后都是另一个团队或个人持续投入的结果。我们无法替这些站点背书，但会尽量排除明显失效或可疑的条目。如果你发现某个链接已经变质，或者有更合适的替代，欢迎保持观望——导航会不定期更新。</p>
+    <p>另外，这里没有用户注册或追踪系统，也不设付费推荐位。分类顺序不隐含任何推广意图，仅按字母或常见习惯排列。</p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <h2>常见疑问 · 简短说明</h2>
+    <div class="faq-item">
+      <strong>导航适合哪些人？</strong>
+      <p>经常需要查找技术文档、设计资源、开源项目或优质专栏的人；也适合想了解某个领域有哪些常被提及的站点的新手。</p>
+    </div>
+    <div class="faq-item">
+      <strong>链接的可靠性如何？</strong>
+      <p>每个链接在收录前都经过人工访问和基础验证。但网络环境变化快，无法保证永久有效。建议将特别重要的站点自行收藏。</p>
+    </div>
+    <div class="faq-item">
+      <strong>如何理解“克制”这个词？</strong>
+      <p>意味着同类资源不收录过多重复项，优先选择内容原创性强、更新有规律、界面清爽的站点，而不是单纯堆砌数量。</p>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer-note">
+    导航首页 · <a href="https://main-ng.com">NG导航</a> · 仅作索引参考，不构成推荐或担保
+  </div>
+</div>
+</body>
+</html>
