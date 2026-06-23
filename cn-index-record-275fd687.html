@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>NG导航 · 信息索引杂志</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: #f5f9fc;
+            color: #1a2e3b;
+            line-height: 1.6;
+            padding: 0 1rem 3rem;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* 杂志式头图 */
+        .hero {
+            background: linear-gradient(145deg, #0f2b38 0%, #1c4a5a 100%);
+            border-radius: 2rem 2rem 4rem 4rem;
+            margin: 2rem 0 3rem;
+            padding: 3.2rem 2.5rem;
+            box-shadow: 0 12px 30px rgba(22, 79, 89, 0.15);
+            color: #e6f2f5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "◆";
+            position: absolute;
+            top: -2rem;
+            right: -1.5rem;
+            font-size: 16rem;
+            opacity: 0.06;
+            color: #7fc9d7;
+            transform: rotate(15deg);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 350;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            background: #2f7c8c;
+            padding: 0 0.6rem 0.15rem;
+            border-radius: 40px 6px 40px 6px;
+            color: #f0fafc;
+            font-weight: 500;
+        }
+
+        .hero .sub {
+            font-size: 1.2rem;
+            opacity: 0.85;
+            max-width: 70%;
+            margin-top: 0.3rem;
+            border-left: 3px solid #5daebf;
+            padding-left: 1.2rem;
+        }
+
+        /* 背景说明 · 资料索引视角 */
+        .backdrop-note {
+            background: #dfeef3;
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 2.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem 2rem;
+            border: 1px solid #bdd6df;
+        }
+
+        .backdrop-note .label {
+            background: #1f5f6e;
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            white-space: nowrap;
+        }
+
+        .backdrop-note p {
+            flex: 1;
+            color: #1f404b;
+            font-size: 1.05rem;
+        }
+
+        /* 网格卡片区域 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0 2.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(30, 70, 80, 0.08);
+            border: 1px solid #d3e6ed;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(31, 90, 100, 0.12);
+            border-color: #75b8c9;
+        }
+
+        .card .icon {
+            display: inline-block;
+            font-size: 1.8rem;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+            color: #2c7283;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #15343f;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #2c4e5c;
+            font-size: 0.95rem;
+        }
+
+        .card .meta-tag {
+            display: inline-block;
+            background: #d9edf2;
+            color: #104350;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.9rem;
+            border-radius: 30px;
+            margin-top: 1rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* 典型场景引用 */
+        .scene-block {
+            background: #e5f0f5;
+            border-radius: 30px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 2.8rem;
+            border-left: 6px solid #398191;
+        }
+
+        .scene-block p {
+            color: #173f4a;
+            font-size: 1rem;
+            max-width: 85%;
+        }
+
+        .scene-block strong {
+            color: #0f4f5f;
+        }
+
+        /* FAQ摘要 */
+        .faq-mini {
+            display: flex;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 2px 12px rgba(0,40,50,0.04);
+            padding: 1.5rem 2rem;
+            margin: 2.8rem 0 1.8rem;
+            border: 1px solid #c6dce4;
+            justify-content: space-between;
+        }
+
+        .faq-item {
+            flex: 1 1 200px;
+            padding: 0.2rem 1rem 0.2rem 0;
+        }
+
+        .faq-item h4 {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #1d5c6b;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .faq-item h4::before {
+            content: "▹";
+            color: #4298a8;
+        }
+
+        .faq-item p {
+            font-size: 0.9rem;
+            color: #2c5361;
+        }
+
+        /* 页尾访问提示 */
+        .footer-visit {
+            margin-top: 3.5rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #b3ced9;
+            text-align: center;
+            font-size: 1.05rem;
+            color: #215a68;
+        }
+
+        .footer-visit a {
+            color: #136473;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid #6bb1c2;
+            padding-bottom: 0.1rem;
+            transition: 0.15s;
+        }
+
+        .footer-visit a:hover {
+            background: #c9e2ec;
+            border-bottom-color: #1e6f81;
+        }
+
+        .footer-visit .hint {
+            display: block;
+            margin-top: 0.6rem;
+            font-size: 0.85rem;
+            color: #3e7382;
+            letter-spacing: 0.4px;
+        }
+
+        /* 移动端适应 */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 2.2rem 1.5rem;
+                border-radius: 1.5rem 1.5rem 3rem 3rem;
+            }
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .hero .sub {
+                max-width: 100%;
+                font-size: 1rem;
+            }
+            .backdrop-note {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.5rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .scene-block p {
+                max-width: 100%;
+            }
+            .faq-mini {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 首页横幅 hero -->
+    <header class="hero">
+        <h1>信息整理·<em>NG导航</em></h1>
+        <div class="sub">从资料梳理到索引聚合 · 一种克制的信息界面</div>
+    </header>
+
+    <!-- 背景说明：资料整理角度 -->
+    <div class="backdrop-note">
+        <span class="label">背景</span>
+        <p>持续上升的信息碎片让整理成为前提。不同于传统导航站，<strong>NG导航</strong> 的思路更接近“目录式的资料索引”：以轻量分类和结构化链接，减少检索过程中的噪音。每一条收录都经过主题筛选，不做信息堆砌。</p>
+    </div>
+
+    <!-- 三段自然介绍 · 杂志卡片 -->
+    <div class="card-grid">
+        <div class="card">
+            <div class="icon">📋</div>
+            <h3>索引而非目录</h3>
+            <p>不追求穷尽网址，而是按领域、工具、参考资源做分层整理。每一类目下保留精选链接，并配以简短说明，辅助快速判断内容价值。</p>
+            <span class="meta-tag">整理逻辑优先</span>
+        </div>
+        <div class="card">
+            <div class="icon">🧩</div>
+            <h3>模块化浏览</h3>
+            <p>将常用站点、文献数据库、设计素材、编程文档等分为独立模块。你可按需展开或收起，避免一次性信息过载，更适合研究型查阅。</p>
+            <span class="meta-tag">按需取用</span>
+        </div>
+        <div class="card">
+            <div class="icon">⚙️</div>
+            <h3>精简维护</h3>
+            <p>每个链接都经过可用性与内容相关性检查，移除失效或低质条目。索引本身保持更新，但不会被频繁推送打扰——安静的资料侧写。</p>
+            <span class="meta-tag">低噪更新</span>
+        </div>
+    </div>
+
+    <!-- 典型资料管理场景 -->
+    <div class="scene-block">
+        <p><strong>▸ 学术调研 / 个人知识库</strong> —— 将散落于书签、笔记、文档的参考来源统一索引。NG导航 的模块结构可以作为一种“公开参考框架”来复用，尤其适合需要频繁回溯特定领域资料的工作流。</p>
+    </div>
+
+    <!-- FAQ 摘要：整理方法 & 索引边界 -->
+    <div class="faq-mini">
+        <div class="faq-item">
+            <h4>索引如何组织？</h4>
+            <p>以主题域为第一层级，每个域下设工具、文章、数据源等子类。不按字母排序，而按使用频率及关联性排列。</p>
+        </div>
+        <div class="faq-item">
+            <h4>是否接受提交？</h4>
+            <p>保持索引的审慎筛选，目前以维护者整理为主，确保每条链接都符合资料参考价值。</p>
+        </div>
+        <div class="faq-item">
+            <h4>适合哪种使用者？</h4>
+            <p>研究者、设计师、开发者以及日常需要进行信息归类的使用者，均可从中获得结构启发。</p>
+        </div>
+    </div>
+
+    <!-- 页尾访问提示 · 纯文本链接自然嵌入 -->
+    <div class="footer-visit">
+        若你关注资料索引与信息整理，可浏览 <a href="https://cn-index-ng.com">NG导航</a> 的索引结构，或将其作为自己信息收集的对照参考。
+        <span class="hint">杂志式呈现 · 索引即视角</span>
+    </div>
+
+</div>
+</body>
+</html>
